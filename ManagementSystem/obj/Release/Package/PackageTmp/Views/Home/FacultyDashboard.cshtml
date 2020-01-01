@@ -1,0 +1,130 @@
+﻿
+@{
+    ViewBag.Title = "FacultyDashboard";
+    var faculty = ViewBag.fac;
+    var assignment = ViewBag.subassList;
+}
+
+<h2>FacultyDashboard</h2>
+<ul>
+    <li>
+        Faculty Id :  @faculty.f_id
+    </li>
+    <li>
+        Faculty Name : @faculty.f_name
+    </li>
+    <li>
+        Faculty Email : @faculty.f_email
+    </li>
+    <li>
+        Faculty Phone Number : @faculty.f_phone
+    </li>
+    <li>
+        Subject Code : @faculty.f_subject_code
+    </li>
+    <br />
+    <br />
+
+</ul>
+@{
+    ViewBag.Title = "UploadFile";
+}
+
+<h2>Upload Assignment:</h2>
+
+@using (Html.BeginForm("UploadFile", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    <div>
+        @Html.TextBox("file", "", new { type = "file" }) <br />
+
+        <input type="submit" value="Upload" />
+
+        @ViewBag.Message
+
+    </div>
+}
+
+
+
+
+<h2>All student deatils</h2>
+
+<table style="border:2px solid black">
+    <tr style="border:2px solid black">
+        <th style="border:1px solid black">Name</th>
+        <th style="border:1px solid black">Email</th>
+        <th style="border:1px solid black">Phone</th>
+        <th style="border:1px solid black">Branch Code</th>
+        <th style="border:1px solid black">Creaded on</th>
+        <th style="border:1px solid black">Modified on</th>
+        <th style="border:1px solid black">Is deleted</th>
+        <th style="border:1px solid black">Guid</th>
+    </tr>
+    @foreach (var st in ViewBag.Student)
+    {
+
+
+        <tr style="border:1px solid black">
+            <td style="border:1px solid black">@st.s_name</td>
+            <td style="border:1px solid black"> @st.s_email</td>
+            <td style="border:1px solid black">@st.s_phone</td>
+            <td style="border:1px solid black">@st.s_branch_code</td>
+            <td style="border:1px solid black"> @st.createdOn</td>
+            <td style="border:1px solid black">@st.modifiedOn</td>
+            <td style="border:1px solid black">@st.isdeleted</td>
+            <td style="border:1px solid black">@st.guid</td>
+            <td></td>
+        </tr>
+
+    }
+</table>
+
+<h2>Marks and Remarks for Assignments:</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <ul>
+            @foreach (var assin in assignment)
+            {
+                var link = assin.path;
+            <li>
+                Student Id :@assin.s_id
+                Assignment Id:@assin.a_id
+                <button>
+                    <a href="~/UploadedFiles/SubmittedAssignment/" download> Download Assignment</a>
+                </button>
+                <br/><br />
+                <div class="form-group">
+                    <label>Assignement id</label>
+                    <input type="text" disabled="disabled"="form-control" id="a_id" placeholder="" name="a_id" value=@assin.a_id>
+                </div>
+
+                <div class="form-group">
+                    <label for="marks">Marks of Assignment</label>
+                    <input type="text" class="form-control" id="marks" placeholder="Enter Marks" name="marks">
+
+                </div>
+                <div class="form-group">
+                    <label for="marks">Remarks of Assignment</label>
+                    <input type="text" class="form-control" id="rmarks" placeholder="Enter Remarks" name="remarks">
+                </div>                
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Submit" class="btn btn-default" />
+                    </div>
+                </div>
+                <br />  <br />
+            </li>
+
+
+            }
+        </ul>
+    </div>
+}
+
+
+

@@ -1,0 +1,130 @@
+﻿
+    @*@model ManagementSystem.Models.Student*@
+    @model IEnumerable<ManagementSystem.Models.Branch>
+    @{
+        ViewBag.Title = "Create";
+    }
+
+    <h2>Create</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <p style="color:red;"> @TempData["Message"]</p>
+        <h4>Student</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.s_name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.s_name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.s_name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.s_phone, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.s_phone, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.s_phone, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.s_email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.s_email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.s_email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.s_password, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.s_password, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.s_password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.s_branch_code, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.s_branch_code, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.s_branch_code, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <label>Branch</label>
+            <select class="form-control" name="b_id" required>
+                <option selected value="">Please Select</option>
+                @foreach (var type in Model)
+                {
+                    <option value=@type.b_id>@type.b_name</option>
+                }
+            </select>
+
+        </div>*@
+
+
+
+
+        <div class="form-group">
+            <label for="name">Name of the Student </label>
+            <input type="text" class="form-control" id="name" placeholder="name" name="s_name" required>
+        </div>
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label for="email">Email of Student </label>
+            <input type="text" class="form-control" id="email" placeholder="Enter email" name="s_email" required>
+            @Html.ValidationMessage("s_email", "", new { @class = "text-danger" })
+        </div>
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label for="phone">Phone Number of Student </label>
+            <input type="text" class="form-control" id="phone" placeholder="Enter Number" name="s_phone" required>
+            @Html.ValidationMessage("s_name", "", new { @class = "text-danger" })
+
+        </div>
+
+        <div class="form-group">
+            <label for="password">password </label>
+            <input type="password" class="form-control" id="password" placeholder="Enter Password" name="s_password" required>
+
+        </div>
+
+
+
+        <div class="form-group">
+            <label>Branch</label>
+            <select class="form-control" name="s_branch_code" required>
+                <option selected value="">Please Select</option>
+                @foreach (var type in Model)
+                {
+                    <option value=@type.b_id>@type.b_name</option>
+                }
+            </select>
+
+        </div>
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+        }
+
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>

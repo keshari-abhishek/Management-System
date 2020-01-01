@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Management System</h1>
+    <p class="lead">This application can perform registration for student and faculty and email verification for there accout activation .login for both student and faculty. student can see his/her personal detail and download assignment that is uploaded by faculty and faculty can see details of all student.  </p>
+    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+</div>
+
+@if (Session["facultyId"] == null && Session["studentId"]==null)
+{
+    <div class="row">
+        <div class="col-md-5">
+            <h2>Faculty Registration</h2>
+            <p>
+                Faculty Registration Hear:
+            </p>
+            <p><button>@Html.ActionLink("Faculty Registration", "CreateFaculty")</button></p>
+        </div>
+        <div class="col-md-5">
+            <h2>Faculty Login</h2>
+            <p>After Email verification. Use your email id and password for login</p>
+            <p><button>@Html.ActionLink("Faculty Login", "FacultyLoginForm")</button></p>
+        </div>
+
+        <div class="col-md-5">
+            <h2>Student Registration</h2>
+            <p>Student registration Hear:</p>
+            <p><button>@Html.ActionLink("Student Registration", "Create")</button></p>
+        </div>
+        <div class="col-md-5">
+            <h2>Student Login</h2>
+            <p>After Email verification. Use your email id and password for login</p>
+            <p><button>@Html.ActionLink("Student Login", "StudentLoginForm")</button></p>
+        </div>
+    </div>
+}
+

@@ -1,0 +1,5 @@
+
+Date = 11-07-2019 00:00:00
+Error occured at method = Void Send(System.Net.Mail.MailMessage)
+Error code for the Exception is = -2146233079
+Message for the exception = A from address must be specified.

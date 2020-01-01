@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "StudentDashboard";
+    var student = ViewBag.student;
+    var assinment = ViewBag.assi;
+}
+
+<h2>StudentDashboard</h2>
+<ul>
+    <li>
+        Student Id :  @student.s_id
+    </li>
+    <li>
+        Student Name : @student.s_name
+    </li>
+    <li>
+        Student Email : @student.s_email
+    </li>
+    <li>
+        Student Phone Number : @student.s_phone
+    </li>
+    <li>
+        Branch Code : @student.s_branch_code
+    </li>
+
+</ul>
+<h2>Assignments:</h2>
+<ul>
+    @foreach (var assin in assinment)
+    {
+        var link = assin.path;
+        <li>Assignment Id :@assin.a_id <br />Assignment Name :@assin.a_name <br />Uploaded Date :@assin.createdOn<br /></li>
+        <button>
+            <a href="~/UploadedFiles/@assin.a_name" download> Download Assignment</a>
+        </button>
+
+    }
+
+</ul>
+<h2>Submit Your Assignment</h2>
+@using (Html.BeginForm("SubmitAssignment", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div>
+        @Html.TextBox("file", "", new { type = "file" }) <br />
+
+        <input type="submit" value="Submit Assignment" />
+
+        @ViewBag.Message
+
+    </div>
+}
+
+
+
